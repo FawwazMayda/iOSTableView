@@ -8,8 +8,19 @@
 
 import UIKit
 
+struct Country  {
+    var isCode : String;
+    var name : String;
+}
 class CountriesTableViewController: UITableViewController {
 
+    //MARK: Data Source
+    
+    let countries = [
+        Country(isCode: "PLN", name: "PolandBall"),
+        Country(isCode: "SWS", name: "SwissBall"),
+        Country(isCode: "GMN", name: "GermanyBall")
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,12 +35,12 @@ class CountriesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return countries.count
     }
 
     
@@ -37,7 +48,9 @@ class CountriesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = "Section: \(indexPath.section) Row: \(indexPath.row)"
+        cell.textLabel?.text = "\(countries[indexPath.row].name)"
+        cell.detailTextLabel?.text = "\(countries[indexPath.row].isCode)"
+        cell.imageView?.image = UIImage(named: countries[indexPath.row].isCode)
         return cell
     }
     
