@@ -15,7 +15,7 @@ struct Country  {
 class CountriesTableViewController: UITableViewController {
 
     //MARK: Data Source
-    
+    var rid = 0
     let countries = [
         Country(isCode: "PLN", name: "PolandBall"),
         Country(isCode: "SWS", name: "SwissBall"),
@@ -23,6 +23,7 @@ class CountriesTableViewController: UITableViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.isEditing = true
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,12 +36,12 @@ class CountriesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return countries.count
+        return 1
     }
 
     
@@ -48,9 +49,10 @@ class CountriesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = "\(countries[indexPath.row].name)"
-        cell.detailTextLabel?.text = "\(countries[indexPath.row].isCode)"
-        cell.imageView?.image = UIImage(named: countries[indexPath.row].isCode)
+        cell.textLabel?.text = "\(countries[rid].name)"
+        cell.detailTextLabel?.text = "\(countries[rid].isCode)"
+        cell.imageView?.image = UIImage(named: countries[rid].isCode)
+        rid+=1
         return cell
     }
     
